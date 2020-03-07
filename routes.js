@@ -10,14 +10,14 @@ const SEARCH = "/search";
 const USERS = "/users";
 const USER_DETAIL = "/:id";
 // ex)) /users/1
-const EDIT_PROFILE = "/:id/edit-profile";
-const CHANGE_PW = "/:id/change-pw";
+const EDIT_PROFILE = "/edit-profile";
+const CHANGE_PW = "/change-pw";
 
 // Videos
 const VIDEOS ="/videos";
 const UPLOAD = "/upload";
 const VIDEO_DETAIL = "/:id";
-const EDIT_VIDEO = "/:id/edit";
+const EDIT_VIDEO = "/:id/edit-video";
 // ex)) /videos/2/edit
 const DEL_VIDEO = "/:id/delete";
 
