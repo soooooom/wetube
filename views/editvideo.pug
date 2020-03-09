@@ -1,4 +1,8 @@
 extends layouts/main
 
 block content
-    p editvid
+    .form-container
+        input(type="text", name="videoTitle", placeholder="Title")
+        input(type="text", name="videoDescription", placeholder="Description")
+        input(type="submit", value="Update Video")
+    a.form-container__link(href=`/videos/${routes.delVideo}`) DELETE VIDEO
