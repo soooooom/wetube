@@ -18,7 +18,7 @@ const VideoSchema = new mongoose.Schema( {
         type: Date,
         default :Date.now
     },
-    // video 에 달린 comment id 집합을 연결하는 방법 ex) video = [1,2,4,7]
+    // [연결]video 에 달린 comment id 집합을 연결하는 방법 ex) video = [1,2,4,7]
     comment: [{
         type: mongoose.Schema.Types.ObjectId,
         ref : "Comment"

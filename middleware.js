@@ -1,4 +1,5 @@
-import routes from "./routes"
+import routes from "./routes";
+import multer from "multer";
 
 export const localMiddleware=(req,res,next) => {
     res.locals.routes= routes;
@@ -9,3 +10,8 @@ export const localMiddleware=(req,res,next) => {
     }
     next();
 }
+
+const multerVideo = multer({ dest :"videos/"});
+// dest = 서버에 있는 videos 폴더
+
+export const uploadVideo = multerVideo.single('videoFile');

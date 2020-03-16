@@ -9,7 +9,7 @@ const CommentSchema = new mongoose.Schema({
         type: Date,
         default : Date.now
     }
-    /*  comment 에 해당하는 video id 를 저장하는 방법, ex)) video: 2
+    /* [연결]comment 에 해당하는 video id 를 저장하는 방법, ex)) video: 2
     video : {
         type: mongoose.Schema.Types.ObjectId,
         ref : "Video"
