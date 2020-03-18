@@ -14,6 +14,9 @@ import routes from "./routes";
 const app = express();
 
 app.set("view engine", "pug");
+//app.use("/edit-profile", express.static("uploads/images"));
+app.use("/uploads", express.static("uploads/"));
+// 사이트의 `/uploads` 링크를 통했을 때 주어진 디렉토리("uploads")에 있는 파일을 제공하는 미들웨어
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());

@@ -1,4 +1,5 @@
 import routes from "../routes";
+import Profile from "../models/Profile";
 
 export const getJoin =(req,res) => {
     res.render("join", {pageTitle : "join"});
@@ -32,6 +33,18 @@ export const logout = (req,res) => {
 }
 export const users =(req, res) => res.render("users", {pageTitle : "users"});
 export const userDetail = (req, res) => res.render("usersDetail", {pageTitle : "usersdetail"});
-export const editProfile = (req, res) => res.render("editProfile", {pageTitle : "editprofile"});
+export const getEditProfile = (req, res) => res.render("editProfile", {pageTitle : "editprofile"});
+export const postEditProfile = async(req, res) => {
+    const{
+        body : { name, email }, 
+        file : { path }
+    } =req;
+    const newAvatar = await Profile.create({
+        name,
+        email,
+        fileUrl: path
+    })
+    res.redirect(routes.userDetail(newAvatar.id));
+}
 export const changePw = (req, res) => res.render("changePW", {pageTitle : "changePW"});
 

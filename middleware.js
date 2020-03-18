@@ -11,7 +11,10 @@ export const localMiddleware=(req,res,next) => {
     next();
 }
 
-const multerVideo = multer({ dest :"videos/"});
-// dest = 서버에 있는 videos 폴더
+const multerVideo = multer({ dest :"uploads/videos/"});
+// dest = 서버에 있는 uploads에 있는 videos 폴더
+
+const multerImage = multer({ dest:"uploads/images/"});
 
 export const uploadVideo = multerVideo.single('videoFile');
+export const uploadImage = multerImage.single('avatar');

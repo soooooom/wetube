@@ -38,11 +38,65 @@ export const postUpload = async(req,res) => {
         description
     });
     res.redirect(routes.videoDetail(newVideo.id));
+    console.log(newVideo);
     //redirect to videoDetail/videos.id
     //id 는 create 시 mongoDB에서 자동생성
+    
 }
 
-export const videoDetail = (req,res) => res.render("videodetail", {pageTitle:"video detail"});
-export const editVideo = (req,res) => res.render("editvideo", {pageTitle : "edit video"});
-export const delVideo = (req,res) => res.render("delvideo", {pageTitle : "del video"});
+export const videoDetail = async(req,res) =>{
+    const{
+        params : {id}
+    }=req;
+    try{
+        const video = await Video.findById(id);
+        res.render("videodetail", {pageTitle: video.title , video});
+    }
+    catch(error){
+        console.log(error);
+        res.redirect(routes.home);
+    }
+}
+export const getEditVideo = async(req,res) => {
+    const{
+        params : {id}
+    } = req;
+    try {
+        const video = await Video.findById(id);
+        res.render("editvideo", {pageTitle : `Edit ${video.title}`, video});
+    } catch (error) {
+        res.redirect(routes.home);
+    }
 
+}
+export const postEditVideo = async(req,res) => {
+    const{
+        params : {id},
+        body : {title, description}
+    } =req;
+    console.log(title, description);
+    try {
+        //await Video.findByIdAndUpdate( {id}, {title, description} );
+        await Video.findOneAndUpdate({_id: id}, { title, description });
+        res.redirect(routes.videoDetail(id));
+
+    } catch (error) {
+        res.redirect(routes.home);
+    }
+
+}
+
+export const delVideo = async(req,res) =>{
+    const{
+        params : {id}
+    } = req;    
+    console.log(id);
+    try {
+        await Video.findOneAndDelete({_id: id});
+    }
+    catch (error) {
+        console.log(error);    
+    }
+    res.redirect(routes.home);
+
+}
