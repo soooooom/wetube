@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
+import passport from "passport";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { localMiddleware } from "./middleware";
@@ -21,6 +22,9 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(localMiddleware);
 
 app.use("/", globalRouter);

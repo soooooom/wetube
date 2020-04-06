@@ -2,13 +2,19 @@
 // 독점적으로 "url" 다룸
 import express from "express";
 import routes from "../routes";
-import { logout, getJoin, postJoin, getLogin, postLogin } from "../controllers/userController";
+import {
+  logout,
+  getJoin,
+  postJoin,
+  getLogin,
+  postLogin,
+} from "../controllers/userController";
 import { search, home } from "../controllers/videoController";
 const globalRouter = express.Router();
 
 // auto import from controllers
 globalRouter.get(routes.join, getJoin);
-globalRouter.post(routes.join, postJoin);
+globalRouter.post(routes.join, postJoin, postLogin);
 
 globalRouter.get(routes.login, getLogin);
 globalRouter.post(routes.login, postLogin);
